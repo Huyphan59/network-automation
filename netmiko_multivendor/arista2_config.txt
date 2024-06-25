@@ -1,0 +1,39 @@
+vlan 10
+exit
+
+vlan 20
+exit
+
+int Ethernet 4
+sw mode access
+sw access vlan 10
+exit
+
+int Ethernet 3
+sw mode access
+sw access vlan 20
+exit
+
+int vlan 10
+ip add 192.168.10.2/24
+no shut
+exit
+
+int vlan 20
+ip add 192.168.20.2/24
+no shut
+exit
+
+int Ethernet 2
+sw trunk allow vlan 10,20
+sw mode trunk
+exit
+
+ip routing
+router ospf 1
+network 192.168.10.0 0.0.0.255 area 0
+network 192.168.20.0 0.0.0.255 area 0
+network 192.168.1.0 0.0.0.255 area 0
+exit
+
+do wr

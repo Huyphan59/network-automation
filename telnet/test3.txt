@@ -1,0 +1,11 @@
+enable
+cisco123
+conf t
+router rip
+version 2
+net 192.168.1.30
+end
+term len 0
+sh ip protocols
+write
+exit

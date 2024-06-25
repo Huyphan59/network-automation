@@ -1,0 +1,6 @@
+ip access-list extended notelnet
+deny tcp any any eq telnet
+permit ip any any
+
+int F0/0
+ip access-group notelnet in
